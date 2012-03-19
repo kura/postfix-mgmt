@@ -1,0 +1,8 @@
+Flask==0.8
+Flask-SQLAlchemy==0.15
+Flask-Script==0.3.2
+Flask-WTF==0.5.2
+SQLAlchemy==0.7.5
+WTForms==0.6.3
+argparse==1.2.1
+py-bcrypt==0.2
