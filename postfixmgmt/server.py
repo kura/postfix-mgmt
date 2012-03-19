@@ -50,7 +50,6 @@ def domain_add():
         flash("You need to log in to access this page")
         return redirect(url_for("login"))
     form = DomainAddForm(request.form)
-    print request.form
     if form.validate_on_submit():
         d = Domain(request.form['name'], request.form['description'])
         db.session.add(d)
