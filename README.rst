@@ -41,6 +41,16 @@ Base command
 Available commands
 ~~~~~~~~~~~~~~~~~~
 
+**Actions**
+
+- List
+
+- Add
+
+- Edit
+
+- Delete
+
 Manage domains
 **************
 
@@ -67,6 +77,12 @@ _______________
 Manage addresses
 ****************
 
+**Actions**
+
+- List (filtered/unfiltered)
+
+- Add
+
 List addresses
 ______________
 
@@ -77,3 +93,14 @@ ___________________________________
 
   address -m list -d kura.io
 
+Manage admins
+*************
+
+**Actions**
+
+- Add
+
+Add an admin
+____________
+
+   admin -m add -e YOU@DOMAIN.TLD -a 1
