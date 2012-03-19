@@ -3,8 +3,9 @@ from werkzeug.datastructures import MultiDict
 from flask import request
 from flaskext.script import Manager, prompt_pass, prompt_choices
 from postfixmgmt import app, db, __version__
-from postfixmgmt.models import Domain, Address
-from postfixmgmt.forms import DomainAddForm
+from postfixmgmt.auth import create_password
+from postfixmgmt.models import Domain, Address, Admin
+from postfixmgmt.forms import DomainAddForm, AdminAddForm
 
 
 manager = Manager(app)
@@ -77,7 +78,7 @@ def domain(**values):
     if values['method'] == 'edit':
         edit_domain(**values)
 
-@manager.option("-a", "--active", dest="active")
+@manager.option("-a", "--active", dest="active", default=False)
 @manager.option("-u", "--username", dest="username")
 @manager.option("-d", "--domain", dest="domain")
 @manager.option("-m", "--method", dest="method", choices=('list', 'add', 'edit', 'del'), required=True)
@@ -100,6 +101,23 @@ def list_addresses(**values):
 def add_address(**values):
     domain = prompt_choices("Domain (%s@DOMAIN)" % values['username'], (d.name for d in Domain.query.order_by('-name')))
     passwd = prompt_pass("Password")
+
+@manager.option("-a", "--active", dest="active", default=False)
+@manager.option("-e", "--email", dest="email")
+@manager.option("-m", "--method", dest="method", choices=('list', 'add', 'edit', 'del'), required=True)
+def admin(**values):
+    if values['method'] == "add":
+        add_admin(**values)
+
+def add_admin(**values):
+    values['password'] = prompt_pass("Password")
+    request.form = AdminAddForm(MultiDict(values))
+    if not validate_fields(request.form):
+        print_field_errors(values['email'], request.form)
+    a = Admin(values['email'], create_password(values['password']), values['active'])
+    db.session.add(a)
+    db.session.commit()
+    print "Admin '%s' successfully added" % values['email'] 
 
 if __name__ == "__main__":
     manager.run()

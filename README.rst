@@ -2,6 +2,21 @@
 Postfix MGMT
 ============
 
+Installation
+============
+
+Install all requirements
+
+  pip install -r reqs.txt
+
+Install postfix-mgmt
+
+   python setup.py install
+
+Create an admin account
+
+   python manage.py admin -m add -e YOU@DOMAIN.TLD -a 1
+
 Usage
 =====
 
