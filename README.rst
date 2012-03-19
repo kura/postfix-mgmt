@@ -54,6 +54,16 @@ ____________
 
   domain -m add -n kura.io -d "Test domain"
 
+Edit a domain
+_____________
+
+  domain -m edit -n kura.io -d "This is a live domain"
+
+Delete a domain
+_______________
+
+  domain -m del -n kura.io
+
 Manage addresses
 ****************
 
