@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Admin User Management</h2>
+<p>Here you can create, modify and delete users who have access to this interface.</p>
+<p><a href="{{ url_for("admin_add") }}">Add an admin user</a></p>
+{% if admins %}
+<table>
+  <colgroup>
+    <col width="25%" align="left" />
+    <col width="45%" align="left" />
+    <col width="20%" align="right" />
+  </colgroup>
+	<tr>
+		<th>User</th>
+		<th>Status</th>
+		<th></th>
+	</tr>
+	{% for admin in admins %}
+	<tr>
+		<td>{{ admin.email }}</td>
+		<td>{% if admin.active %}Active{% else %}Inactive{% endif %}</td>
+		<td>
+            <a href="{{ url_for("admin_edit", id=admin.id) }}" class="button">Edit</a>
+	    <a href="{{ url_for("admin_password_edit", id=admin.id) }}" class="button">Edit Password</a>
+            <a href="{{ url_for("admin_delete", id=admin.id) }}" class="button">Delete</a>
+        </td>
+	</tr>
+	{% endfor %}
+</table>
+<h2>Actions</h2>
+<p><strong>Edit</strong> - Change the admin user's email address and status</p>
+<p><strong>Edit Password</strong> - Change the admin user's password</p>
+<p><strong>Delete</strong> - Delete an admin user</p>
+{% endif %}
+{% endblock %}

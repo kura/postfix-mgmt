@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#add").validate({
+    rules: {
+      address: {required:true},
+      goto: {required:true}
+    },
+    messages: {
+      address: "You need to provide an address",
+      goto: "You need to provide a goto address"
+    },
+    errorElement: "div",
+    errorClass: "error"
+  });
+});
+</script>
+<form method="post" action="{{ url_for("alias_add") }}" name="add" id="add">
+<fieldset>
+<legend><h2>Add an alias</h2></legend>
+{{ form.csrf }}
+  <dl>
+    {{ render_field(form.username, class="required", autocomplete="off") }}
+    <dt>{% if form.domain.flags.required %}<strong>{{ form.domain.label }}</strong>{% else %}{{ form.domain.label }}{% endif %}
+    <dd>@ {{ form.domain()|safe }}
+      {% if form.domain.description %}
+        <p>{{ form.domain.description }}</p>
+      {% endif %}
+      {% if form.domain.errors %}
+        <ul class="errors">
+          {% for error in form.domain.errors %}<li>{{ error }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+    </dd>
+    {{ render_field(form.goto, class="required", autocomplete="off") }}
+  </dl>
+</fieldset>
+<div class="submit">
+  <a href="{{ url_for("aliases_index") }}" class="button">Cancel</a>
+  <input class="button" type="submit" value="Add Alias"/>
+</div>
+</form>
+{% endblock %}

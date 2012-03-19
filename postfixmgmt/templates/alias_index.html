@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Alias Management</h2>
+<p>Here you can create and modify email aliases</p>
+<p><a href="{{ url_for("alias_add") }}">Add an alias</a></p>
+{% if aliases %}
+<table>
+  <colgroup>
+    <col width="20%" align="left" />
+    <col width="20%" align="left" />
+    <col width="40%" align="left" />
+    <col width="20%" align="right" />
+  </colgroup>
+	<tr>
+		<th>Username</th>
+		<th>Domain</th>
+		<th>Goto</th>
+		<th></th>
+	</tr>
+	{% for alias in aliases %}
+	<tr>
+		<td>{{ alias.username }}</td>
+		<td>@ {{ alias.domain.name }}</td>
+		<td>{{ alias.goto }}</td>
+		<td>
+            <a href="{{ url_for("alias_edit", username=alias.username, domain=alias.domain.name) }}" class="button">Edit</a>
+            <a href="{{ url_for("alias_delete", username=alias.username, domain=alias.domain.name) }}" class="button">Delete</a>
+        </td>
+	</tr>
+	{% endfor %}
+</table>
+<h2>Actions</h2>
+<p><strong>Edit</strong> - Edit an alias, changing the address it can go to</p>
+<p><strong>Delete</strong> - Delete an alias</p>
+{% endif %}
+{% endblock %}

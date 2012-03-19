@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#add").validate({
+    rules: {
+      email: {required:true},
+      password: {required:true}
+    },
+    messages: {
+      email: "You need to provide an email address",
+      email: "You need to provide a password"
+    },
+    errorElement: "div",
+    errorClass: "error"
+  });
+});
+</script>
+<form method="post" action="{{ url_for("admin_add") }}" name="add" id="add">
+<fieldset>
+<legend><h2>Add an admin user</h2></legend>
+{{ form.csrf }}
+  <dl>
+    {{ render_field(form.email, class="required", autocomplete="off") }}
+    {{ render_field(form.password, class="required", autocomplete="off") }}
+  </dl>
+</fieldset>
+<div class="submit">
+  <a href="{{ url_for("admins_index") }}" class="button">Cancel</a>
+  <input class="button" type="submit" value="Add Admin"/>
+</div>
+</form>
+{% endblock %}

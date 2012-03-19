@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#edit").validate({
+    errorElement: "div",
+    errorClass: "error"
+  });
+});
+</script>
+<form method="post" action="{{ url_for("domain_edit", name=name) }}" name="edit" id="edit">
+<fieldset>
+<legend><h2>Edit a domain</h2></legend>
+{{ form.hidden_tag() }}
+  <dl>
+    {{ render_field(form.name, disabled=disabled, autocomplete="off") }}
+    {{ render_field(form.description) }}
+  </dl>
+</fieldset>
+<div class="submit">
+  <a href="{{ url_for("domains_index") }}" class="button">Cancel</a>
+  <input class="button" type="submit" value="Edit Domain"/>
+</div>
+</form>
+{% endblock %}

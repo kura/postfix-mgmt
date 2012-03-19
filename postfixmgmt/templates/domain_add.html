@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#add").validate({
+    rules: {
+      name: {required:true},
+    },
+    messages: {
+      name: "You need to provide a domain name",
+    },
+    errorElement: "div",
+    errorClass: "error"
+  });
+});
+</script>
+<form method="post" action="{{ url_for("domain_add") }}" name="add" id="add">
+<fieldset>
+<legend><h2>Add a domain</h2></legend>
+{{ form.csrf }}
+  <dl>
+    {{ render_field(form.name, class="required", autocomplete="off") }}
+    {{ render_field(form.description) }}
+  </dl>
+</fieldset>
+<div class="submit">
+  <a href="{{ url_for("domains_index") }}" class="button">Cancel</a>
+  <input class="button" type="submit" value="Add Domain"/>
+</div>
+</form>
+{% endblock %}
