@@ -1,9 +1,9 @@
 import sys
-from werkzeug.datastructures import ImmutableDict, MultiDict
+from werkzeug.datastructures import MultiDict
 from flask import request
-from flaskext.script import Manager
+from flaskext.script import Manager, prompt_pass, prompt_choices
 from postfixmgmt import app, db, __version__
-from postfixmgmt.models import Domain
+from postfixmgmt.models import Domain, Address
 from postfixmgmt.forms import DomainAddForm
 
 
@@ -76,6 +76,30 @@ def domain(**values):
         delete_domain(**values)
     if values['method'] == 'edit':
         edit_domain(**values)
+
+@manager.option("-a", "--active", dest="active")
+@manager.option("-u", "--username", dest="username")
+@manager.option("-d", "--domain", dest="domain")
+@manager.option("-m", "--method", dest="method", choices=('list', 'add', 'edit', 'del'), required=True)
+def address(**values):
+    if values['method'] == "list":
+        list_addresses(**values)
+    if values['method'] == "add":
+        add_address(**values)
+
+def list_addresses(**values):
+    if values['domain']:
+        domains = (Domain.query.filter_by(name=values['domain']).first(),)
+    else:
+        domains = Domain.query.all()
+    for d in domains:
+        print "Addresses for %s:" % d.name
+        for a in Address.query.filter_by(domain=d):
+            print "- %s@%s active:%s" % (a.username, a.domain.name, a.active)
+
+def add_address(**values):
+    domain = prompt_choices("Domain (%s@DOMAIN)" % values['username'], (d.name for d in Domain.query.order_by('-name')))
+    passwd = prompt_pass("Password")
 
 if __name__ == "__main__":
     manager.run()

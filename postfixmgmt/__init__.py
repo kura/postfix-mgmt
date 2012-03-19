@@ -4,7 +4,7 @@ from flaskext.sqlalchemy import SQLAlchemy
 from postfixmgmt.config import *
 
 
-__version__ = "Postfix MGMT 0.0.1 Alpha"
+__version__ = "Postfix MGMT 0.0.2 Alpha"
 
 
 app = Flask(__name__)
