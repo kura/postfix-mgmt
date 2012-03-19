@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Address Management</h2>
+<p>Here you can create and modify email accounts.</p>
+<p><a href="{{ url_for("address_add") }}">Add an address</a></p>
+{% if addresses %}
+<table>
+  <colgroup>
+    <col width="15%" align="left" />
+    <col width="35%" align="left" />
+    <col width="10%" align="left" />
+    <col width="30%" align="right" />
+  </colgroup>
+	<tr>
+		<th>User</th>
+		<th>Domain</th>
+		<th>Status</th>
+		<th></th>
+	</tr>
+	{% for address in addresses %}
+	<tr>
+		<td>{{ address.username }}</td>
+		<td>@ {{ address.domain.name }}</td>
+		<td>{% if address.active %}Active{% else %}Inactive{% endif %}</td>
+		<td>
+            <a href="{{ url_for("address_edit", username=address.username, domain=address.domain.name) }}" class="button">Edit</a>
+	    <a href="{{ url_for("address_password_edit", username=address.username, domain=address.domain.name) }}" class="button">Edit Password</a>
+            <a href="{{ url_for("address_clone", username=address.username, domain=address.domain.name) }}" class="button">Clone</a>
+            <a href="{{ url_for("address_delete", username=address.username, domain=address.domain.name) }}" class="button">Delete</a>
+        </td>
+	</tr>
+	{% endfor %}
+</table>
+<h2>Actions</h2>
+<p><strong>Edit</strong> - Edit an email account, changing it's username, domain and status</p>
+<p><strong>Edit Password</strong> - Edit the password for an email account - this is used for SMTP, POP3 and SMTP logins</p>
+<p><strong>Clone</strong> - Clone an email account, allowing you to clone all of it's settings to a new username or domain</p>
+<p><strong>Delete</strong> - Delete an email account</p>
+{% endif %}
+{% endblock %}

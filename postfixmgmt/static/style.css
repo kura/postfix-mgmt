@@ -1,0 +1,112 @@
+* {margin: 0;}
+body {margin: 0; font: 0.625em/1em Arial, Helvetica, sans-serif; color: #000; background: #fff;}
+a {color: #91AE40;}
+
+/* Sticky footer */
+html, body {height: 100%;}
+.wrapper {min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -85px;}
+#footer, .push {height: 85px;}
+
+/* Header */
+#header {position: relative; padding: 2px 20px 0 250px; height: 190px; color: #fff; background: url('images/header.jpg');}
+#header h1 {margin: 50px 0 10px; padding: 0 0 10px; border-bottom: 3px solid #91AE40; font: normal 4em/1em 'swiss_381', 'Impact MS', sans-serif; letter-spacing: 0.7px; text-transform: uppercase; text-align: right;}
+#header #flash {padding: 0 0 10px; border-bottom: 1px solid #91AE40; font: 2.5em/1em 'swiss_381', 'Impact MS', sans-serif; letter-spacing: 0.7px; text-transform: uppercase; text-align: right;}
+#header .required {position: absolute; right: 20px; bottom: 15px; font-size: 1.4em; color: #bfbfbf;}
+
+/* Navigation */
+#nav_links {position: absolute; left: 0; top: 155px; list-style: none outside; margin: 0; padding: 0;}
+#nav_links li{float: left; padding-left: 10px; padding-right: 20px;}
+#nav_links li .logout{float: right;}
+#nav_links a {display: block; margin: 0.5em 0; padding: 0 0 0 32px; font: 2.25em/1em 'swiss_381', 'Impact MS', sans-serif; letter-spacing: 0.7px; text-transform: uppercase; text-decoration: none; color: #fff; background: url('images/bullet.gif') left center no-repeat;}
+
+/* Content */
+#content {padding: 20px; font-size: 1.2em;}
+#content p {margin: 1em 0; line-height: 1.5em;}
+
+/* Footer */
+#footer {color: #fff; background: url('images/footer.jpg');}
+#footer .copyright {padding: 60px 0 0 20px; font-size: 1.2em;}
+
+/* Forms */
+fieldset {padding: 1em 0 2em; border: 0; float: left; width: 30%; margin: 0 0 0 5%; _margin: 0 0 0 3%;}
+fieldset:first-child, fieldset.first {margin: 0;}
+fieldset legend {display: block; width: 100%; padding: 0.5em 0 0; font: normal 2em/1em 'swiss_381', 'Impact MS', sans-serif; text-transform: uppercase; text-align: right; letter-spacing: 0.7px; border-top: 3px solid #91AE40;}
+fieldset dt {clear: both; display: block; padding: 2em 0 0.5em;}
+fieldset dd {display: block; padding: 0;}
+fieldset dt.inline, fieldset dd.inline {float: left; padding: 3em 0 0.5em; line-height: 2em; margin-right: 1em;}
+fieldset dd input[type="text"],
+fieldset dd input[type="password"],
+fieldset dd textarea {width: 100%; background: #F9F6F6; padding: 0.5em 0; border: 1px solid #E1E1E1; -webkit-appearance: none;}
+fieldset dd p {margin: 1em 0.5em 0; line-height: 1.5em; color: #888;}
+
+/* Buttons */
+.submit {clear: both; margin: 1em 0 1em; padding: 1em 0; text-align: right; border-top: 2px solid #91AE40;}
+input.button, a.button {display: inline-block; padding: 0.15em 0.5em; font: 1.5em/1.5em 'swiss_381', 'Impact MS', sans-serif; letter-spacing: 0.7px; text-transform: uppercase; cursor: pointer; color: #fff; background: #91AE40; border: 0; -webkit-appearance: none;}
+input.button:hover, a.button:hover {background: #c8e700;}
+
+/* Table styles */
+table {
+    width: 100%;
+    border: 0;
+    margin: 2em 0 1em;
+}
+
+table th,
+table td {
+    padding: 0.5em;
+}
+
+table th {
+    text-align: left;
+    font: 1.5em/1em 'swiss_381', 'Impact MS', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+table td {
+    border-bottom: 1px dotted #ccc;
+}
+
+table input.button,
+table a.button {
+    font-size: 1.3em;
+}
+
+/* Buttons */
+.submit {
+    clear: both;
+    margin: 1em 0 1em;
+    padding: 1em 0;
+    text-align: right;
+    border-top: 2px solid #91AE40;
+}
+
+input.button,
+a.button {
+    display: inline-block;
+    padding: 0.15em 0.5em;
+    font: 1.5em/1.5em 'swiss_381', 'Impact MS', sans-serif;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    background: #91AE40;
+    border: 0;
+    -webkit-appearance: none; /* iPhone */
+}
+
+input.button:hover,
+a.button:hover {
+    background: #c8e700;
+}
+
+/* Errors */
+fieldset .errors {list-style: none outside; margin: 0; padding: 0;}
+fieldset .errors li {margin: 1em 0 0; color: #f00;}
+div.error {margin: 1em 0 0; color: #f00;}
+
+/* Utilities */
+@font-face {font-family: 'swiss_381'; src: url('fonts/style_381.eot'); src: url('fonts/style_381.eot?#iefix') format('embedded-opentype'), url('fonts/style_381.woff') format('woff'), url('fonts/style_381.ttf')  format('truetype'), url('fonts/style_381.svg#svgFontName') format('svg');}
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0;}
+* html .clearfix, *:first-child+html .clearfix { zoom: 1; } /* IE */

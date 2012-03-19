@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#login").validate({
+    rules: {
+      email: {required:true},
+      password: {required: true}
+    },
+    messages: {
+      email: "Please enter your email address",
+      password: "Please enter your password",
+    },
+    errorElement: "div",
+    errorClass: "error"
+  });
+});
+</script>
+<form method="post" action="{{ url_for("login") }}" name="login" id="login">
+<fieldset>
+<legend>Login</legend>
+{{ form.csrf }}
+  <dl>
+    {{ render_field(form.email, class="required", autocomplete="off") }}
+    {{ render_field(form.password, class="required", autocomplete="off") }}
+  </dl>
+</fieldset>
+<div class="submit">
+  <input class="button" type="submit" value="Login"/>
+</div>
+</form>
+{% endblock %}

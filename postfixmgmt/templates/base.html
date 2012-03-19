@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Postfix Management :: {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=0.65,maximum-scale=0.65" />
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <link rel="stylesheet" type="text/css" media="all and (max-device-width: 480px)" href="/static/mobile.css" />
+    <link rel="shortcut icon" href="/static/images/favicon.ico" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div id="header">
+        <h1>Postfix MGMT</h1>
+        {% if get_flashed_messages() %}
+        <div id="flash">{% for message in get_flashed_messages() %}<p>{{ message }}</p>{% endfor %}</div>
+        {% endif %}
+        <p class="required">{% block required %}{% endblock %}</p>
+        <ul id="nav_links">
+            {% if session.email %}
+            <li><a href="{{ url_for("admins_index") }}">Admins</a></li>
+            <li><a href="{{ url_for("domains_index") }}">Domains</a></li>
+            <li><a href="{{ url_for("addresses_index") }}">Addresses</a></li>
+            <li><a href="{{ url_for("aliases_index") }}">Aliases</a></li>
+            <li><a href="">Mailing Lists</a></li>
+            <li class="logout"><a href="{{ url_for("logout") }}">Logout</a></li>
+            {% endif %}
+         </ul>
+    </div>
+
+    <div id="content" class="clearfix">
+    {% block content %}{% endblock %}
+    </div>
+    <div class="push"></div>
+</div>
+
+<div id="footer">
+    <div class="copyright">
+        Open source SQL-based Postfix management panel written by Kura from syslog.so
+    </div>
+</div>
+</body>
+</html>

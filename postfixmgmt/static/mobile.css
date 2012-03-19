@@ -1,0 +1,13 @@
+/* Header */
+#header {height: 225px; margin: 0 0 3em; padding: 2px 20px 0 175px;}
+#header .required {bottom: -20px; color: #777;}
+#nav_links {left: auto; right: 0; top: 165px;}
+#nav_links a {background-position: right center; padding: 0 32px 0 0; font-size: 2em;}
+
+/* Forms */
+fieldset {float: none; width: auto; margin: 3em 0 1em;}
+fieldset:first-child {margin: 1em 0;}
+fieldset dd input[type="text"],
+fieldset dd input[type="password"],
+fieldset dd textarea {font-size: 1.5em; line-height: 2em;}
+input.button, a.button {line-height: 2em; padding: 0.3em 1em;}
