@@ -27,9 +27,7 @@ Available commands
 ~~~~~~~~~~~~~~~~~~
 
 Manage domains
-_____________
-
-  domain
+**************
 
 List domains
 ____________
@@ -42,8 +40,15 @@ ____________
   domain -m add -n kura.io -d "Test domain"
 
 Manage addresses
-________________
+****************
 
-  address
+List addresses
+______________
 
+  address -m list
+
+List addresses, filtering by domain
+___________________________________
+
+  address -m list -d kura.io
 
